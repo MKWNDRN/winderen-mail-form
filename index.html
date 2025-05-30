@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Winderen Mail Assistant</title>
+</head>
+<body>
+    <h1>Winderen Mail Assistant</h1>
+    <form id="mailForm">
+        <label for="email">Adres email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="note">Notatka:</label><br>
+        <textarea id="note" name="note" rows="4" cols="50"></textarea><br><br>
+
+        <button type="submit">Wygeneruj Draft</button>
+    </form>
+
+    <div id="response" style="margin-top:20px;">
+        <h2>Wygenerowany Draft:</h2>
+        <pre id="draftContent"></pre>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
