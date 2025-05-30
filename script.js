@@ -1,8 +1,12 @@
 const form = document.getElementById('mailForm');
 const draftContent = document.getElementById('draftContent');
 
-// 🔒 Twój N8N Webhook z tokenem
-const WEBHOOK_URL = 'https://twoj-n8n-url/webhook/history?token=XYZ4321';
+// 🔒 Twój webhook URL — używaj *Production URL* z n8n
+const WEBHOOK_URL = 'https://mk-wd-n8n.app.n8n.cloud/webhook-test/history';
+
+// 🔑 Twoje dane do Basic Auth
+const USERNAME = 'token';        // stały, nie zmieniamy
+const PASSWORD = 'XYZ4321';    // Twój sekretny token
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -10,11 +14,14 @@ form.addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value;
     const note = document.getElementById('note').value;
 
+    const basicAuth = btoa(`${USERNAME}:${PASSWORD}`);
+
     try {
         const response = await fetch(WEBHOOK_URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${basicAuth}`
             },
             body: JSON.stringify({
                 email: email,
